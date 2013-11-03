@@ -83,6 +83,15 @@ body {
   border: none;
 }
 
+.like-section a {
+  margin-bottom: 10px;
+  margin-right: 10px;
+}
+
+.footer-banner img {
+  width: 120px;
+}
+
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
   /* Remove the padding we set earlier */
