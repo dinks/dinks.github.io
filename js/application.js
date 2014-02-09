@@ -9,14 +9,51 @@ String.prototype.repeat = function(num) {
   // Add segments to a slider
   $.fn.addSliderSegments = function (amount) {
     return this.each(function () {
-      var segmentGap = 100 / (amount - 1) + "%"
-        , segment = "<div class='ui-slider-segment' style='margin-left: " + segmentGap + ";'></div>";
+      var segmentGap = 100 / (amount - 1) + "%",
+          segment = "<div class='ui-slider-segment' style='margin-left: " + segmentGap + ";'></div>";
       $(this).prepend(segment.repeat(amount - 2));
     });
   };
 
   $(function() {
-  
+
+    var gistContainer = $('#gists'), nextGist = false;
+
+    if(!document._write) {
+      document._write = document.write;
+    }
+
+    var accessGist = function (gistNumber) {
+      if (gistNumber < 0) {
+        document.write = document._write;
+        return;
+      }
+
+      var data = Mustache.customData.gists[gistNumber];
+
+      document.write = function (str) {
+        var gistContainer = $('#gist-' + data.id);
+        gistContainer.append(str);
+
+        if (nextGist) {
+          // Tags Input
+          gistContainer.closest('.gist-container').find('.tagsinput').tagsInput();
+
+          accessGist(gistNumber - 1);
+        }
+        // For a gist there are 2 document.writes
+        // One for css
+        // One for the actual gist
+        // So we access the next gits only after 2 writes
+        nextGist = !nextGist;
+      };
+
+      var output = Mustache.render(Mustache.templates.gist, data);
+      gistContainer.append(output);
+    };
+
+    accessGist(Mustache.customData.gists.length - 1);
+
     // Todo list
     $(".todo li").click(function() {
         $(this).toggleClass("todo-done");
@@ -29,9 +66,6 @@ String.prototype.repeat = function(num) {
 
     // Tooltips
     $("[data-toggle=tooltip]").tooltip("show");
-
-    // Tags Input
-    $(".tagsinput").tagsInput();
 
     // jQuery UI Sliders
     var $slider = $("#slider");
@@ -64,7 +98,183 @@ String.prototype.repeat = function(num) {
 
     // Switch
     $("[data-toggle='switch']").wrap('<div class="switch" />').parent().bootstrapSwitch();
-    
+
   });
-  
+
 })(jQuery);
+
+// Mustache templates and DATA
+Mustache.customData = {};
+
+Mustache.customData.gists = [
+  { id: 'df5b2f480c6941434529',
+    title: 'Device Platform',
+    url: 'https://gist.github.com/dinks/df5b2f480c6941434529.js',
+    tags: ['rails', 'ruby', 'device']
+  },
+  { id: '4134824',
+    title: 'Bootstrap Topbar List',
+    url: 'https://gist.github.com/dinks/4134824.js',
+    tags: ['rails', 'ruby', 'bootstrap', 'simple-navigation']
+  },
+  { id: '4258438',
+    title: 'Tire with Bonsai',
+    url: 'https://gist.github.com/dinks/4258438.js',
+    tags: ['rails', 'ruby', 'heroku', 'tire', 'bonsai']
+  },
+  { id: '4557471',
+    title: 'Asset Inconsistencies',
+    url: 'https://gist.github.com/dinks/4557471.js',
+    tags: ['rails', 'irb', 'scss', 'ruby']
+  },
+  { id: '6671930',
+    title: 'Healthy',
+    url: 'https://gist.github.com/dinks/6671930.js',
+    tags: ['rails', 'rack', 'ruby']
+  },
+  { id: '6672078',
+    title: 'RVM with ruby_version',
+    url: 'https://gist.github.com/dinks/6672078.js',
+    tags: ['rvm', 'ruby', 'rbenv']
+  },
+  { id: '6689596',
+    title: 'Ruby Threads',
+    url: 'https://gist.github.com/dinks/6689596.js',
+    tags: ['ruby', 'threads']
+  },
+  { id: '6700860',
+    title: 'Autoformatting in VIM',
+    url: 'https://gist.github.com/dinks/6700860.js',
+    tags: ['vim']
+  },
+  { id: '6712229',
+    title: 'Anagram',
+    url: 'https://gist.github.com/dinks/6712229.js',
+    tags: ['ruby', 'anagram']
+  },
+  { id: '6961041',
+    title: 'Fibanocci with the Golden Ratio',
+    url: 'https://gist.github.com/dinks/6961041.js',
+    tags: ['ruby', 'fibanocci', 'goldenratio']
+  },
+  { id: '6962262',
+    title: 'Get Elements by Clazz',
+    url: 'https://gist.github.com/dinks/6962262.js',
+    tags: ['javascript']
+  },
+  { id: '7091208',
+    title: 'Flip Clock',
+    url: 'https://gist.github.com/dinks/7091208.js',
+    tags: ['javascript', 'css', 'html']
+  },
+  { id: '7134126',
+    title: 'Combined Enumerator',
+    url: 'https://gist.github.com/dinks/7134126.js',
+    tags: ['ruby']
+  },
+  { id: '448a641adbef6aec35ee',
+    title: 'OpsWorks',
+    url: 'https://gist.github.com/dinks/448a641adbef6aec35ee.js',
+    tags: ['ruby', 'amazon', 'opsworks']
+  },
+  { id: '7141533',
+    title: 'Rails with Mavericks',
+    url: 'https://gist.github.com/dinks/7141533.js',
+    tags: ['rails', 'ruby', 'mavericks']
+  },
+  { id: '7279379',
+    title: 'instance_eval, instance_exec, class var',
+    url: 'https://gist.github.com/dinks/7279379.js',
+    tags: ['ruby']
+  },
+  { id: '7284178',
+    title: 'Hash Blacklist and Whitelist',
+    url: 'https://gist.github.com/dinks/7284178.js',
+    tags: ['ruby']
+  },
+  { id: '7301370',
+    title: 'Unserialize With Encoding Monkey Patch',
+    url: 'https://gist.github.com/dinks/7301370.js',
+    tags: ['rails', 'ruby']
+  },
+  { id: '7400662',
+    title: 'SSH Autocomplete',
+    url: 'https://gist.github.com/dinks/7400662.js',
+    tags: ['bash', 'ssh']
+  },
+  { id: '7470089',
+    title: 'OpenShift for Rails 4 Logging',
+    url: 'https://gist.github.com/dinks/7470089.js',
+    tags: ['rails', 'openshift', 'log']
+  },
+  { id: '7567702',
+    title: 'NullObject',
+    url: 'https://gist.github.com/dinks/7567702.js',
+    tags: ['ruby']
+  },
+  { id: '7675570',
+    title: 'Apache+Unicorn',
+    url: 'https://gist.github.com/dinks/7675570.js',
+    tags: ['apache', 'unicorn']
+  },
+  { id: '7751631',
+    title: 'Define Singleton Method',
+    url: 'https://gist.github.com/dinks/7751631.js',
+    tags: ['ruby']
+  },
+  { id: '7876559',
+    title: 'Openssl Install Ruby 2.0.0',
+    url: 'https://gist.github.com/dinks/7876559.js',
+    tags: ['ruby', 'openssl']
+  },
+  { id: '7925415',
+    title: 'Access Files from Gem',
+    url: 'https://gist.github.com/dinks/7925415.js',
+    tags: ['ruby', 'gem']
+  },
+  { id: '8053496',
+    title: 'Bundle without certain groups',
+    url: 'https://gist.github.com/dinks/8053496.js',
+    tags: ['ruby', 'gem', 'bundle']
+  },
+  { id: '8208469',
+    title: 'Amazon Stuff',
+    url: 'https://gist.github.com/dinks/8208469.js',
+    tags: ['amazon']
+  },
+  { id: '8236058',
+    title: 'Update bundler for Ruby 2.1.0 as minitest fails to install',
+    url: 'https://gist.github.com/dinks/8236058.js',
+    tags: ['travis', 'bundle', 'ruby']
+  },
+  { id: '8255108',
+    title: 'Reload for FactoryGirl in Spring',
+    url: 'https://gist.github.com/dinks/8255108.js',
+    tags: ['ruby', 'factory-girl', 'spring']
+  },
+  { id: '8281825',
+    title: 'When Reviewing',
+    url: 'https://gist.github.com/dinks/8281825.js',
+    tags: ['review']
+  },
+  { id: '8446517',
+    title: 'ISP Bad',
+    url: 'https://gist.github.com/dinks/8446517.js',
+    tags: ['bash']
+  },
+  { id: '8623158',
+    title: 'Capybara Links',
+    url: 'https://gist.github.com/dinks/8623158.js',
+    tags: ['rails', 'ruby', 'capybara']
+  },
+  { id: '8898546',
+    title: 'Rescue from',
+    url: 'https://gist.github.com/dinks/8898546.js',
+    tags: ['rails', 'ruby']
+  }
+];
+
+Mustache.templates = {
+  gist: '<div class="gist-container"><h5 class="gist-title"><span class="fui-check-inverted"></span>{{title}}</h5><input name="tagsinput" class="tagsinput" value="{{#tags}}{{.}},{{/tags}}" style="display: none;"><div class="row"><div class="col-md-12"><small id="gist-{{id}}"><script src="{{{url}}}"></script></small></div></div></div>'
+};
+
