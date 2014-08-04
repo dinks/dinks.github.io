@@ -271,6 +271,12 @@ Mustache.customData.gists = [
     title: 'Rescue from',
     url: 'https://gist.github.com/dinks/8898546.js',
     tags: ['rails', 'ruby']
+  },
+  {
+    id: 'eaf5b521ca465cef45c8',
+    title: 'Better I18n Mocks',
+    url: 'https://gist.github.com/dinks/eaf5b521ca465cef45c8.js',
+    tags: ['ruby', 'I18n']
   }
 ];
 
