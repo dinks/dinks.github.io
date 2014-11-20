@@ -105,7 +105,7 @@ String.prototype.repeat = function(num) {
 
 // Mustache templates and DATA
 Mustache.customData = {};
-
+// Place newer gists at the end of the list
 Mustache.customData.gists = [
   { id: 'df5b2f480c6941434529',
     title: 'Device Platform',
@@ -277,6 +277,48 @@ Mustache.customData.gists = [
     title: 'Better I18n Mocks',
     url: 'https://gist.github.com/dinks/eaf5b521ca465cef45c8.js',
     tags: ['ruby', 'I18n']
+  },
+  {
+    id: 'd37af17cbe612096541a',
+    title: 'Robot User Agents',
+    url: 'https://gist.github.com/dinks/d37af17cbe612096541a.js',
+    tags: ['ruby', 'user-agent', 'robots']
+  },
+  {
+    id: 'b135d3e3087c1b982004',
+    title: 'Spotlight Index Worker',
+    url: 'https://gist.github.com/dinks/b135d3e3087c1b982004.js',
+    tags: ['mds', 'spotlight', 'index']
+  },
+  {
+    id: 'e861c869a85579fc5559',
+    title: 'Module Exports How',
+    url: 'https://gist.github.com/dinks/e861c869a85579fc5559.js',
+    tags: ['module', 'exports', 'nodejs']
+  },
+  {
+    id: '911d30d2be93322ff062',
+    title: 'Parasitic Combination Inheritance Pattern',
+    url: 'https://gist.github.com/dinks/911d30d2be93322ff062.js',
+    tags: ['pcip', 'inheritance', 'javascript']
+  },
+  {
+    id: '809313a28ca30735b8bc',
+    title: 'Eval Gotcha',
+    url: 'https://gist.github.com/dinks/809313a28ca30735b8bc.js',
+    tags: ['eval', 'javascript']
+  },
+  {
+    id: '701a599a85b0b8450413',
+    title: 'JavaScript WAT',
+    url: 'https://gist.github.com/dinks/701a599a85b0b8450413.js',
+    tags: ['wat', 'javascript']
+  },
+  {
+    id: 'a724ad6816ab924b03e3',
+    title: 'Promise Patterns',
+    url: 'https://gist.github.com/dinks/a724ad6816ab924b03e3.js',
+    tags: ['promise', 'javascript', 'patterns']
   }
 ];
 
