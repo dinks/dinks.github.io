@@ -319,6 +319,12 @@ Mustache.customData.gists = [
     title: 'Promise Patterns',
     url: 'https://gist.github.com/dinks/a724ad6816ab924b03e3.js',
     tags: ['promise', 'javascript', 'patterns']
+  },
+  {
+    id: '99b1c80cd3677a15c14b',
+    title: 'Rspec Hearts Formatter',
+    url: 'https://gist.github.com/dinks/99b1c80cd3677a15c14b.js',
+    tags: ['rspec', 'formatter', 'ruby']
   }
 ];
 
