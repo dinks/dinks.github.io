@@ -325,6 +325,24 @@ Mustache.customData.gists = [
     title: 'Rspec Hearts Formatter',
     url: 'https://gist.github.com/dinks/99b1c80cd3677a15c14b.js',
     tags: ['rspec', 'formatter', 'ruby']
+  },
+  {
+    id: '8a1ed1ee14e5fc6209e5',
+    title: 'Prepend versus Include',
+    url: 'https://gist.github.com/dinks/8a1ed1ee14e5fc6209e5.js',
+    tags: ['ruby']
+  },,
+  {
+    id: '6962dee675f54ebe7390',
+    title: 'Mutable Objects as Hash Keys',
+    url: 'https://gist.github.com/dinks/6962dee675f54ebe7390.js',
+    tags: ['ruby', 'gotcha']
+  },
+  {
+    id: '66dab4b89d5f2d6269ab',
+    title: 'Test Middleware in Rails',
+    url: 'https://gist.github.com/dinks/66dab4b89d5f2d6269ab.js',
+    tags: ['rspec', 'middleware', 'rails', 'ruby']
   }
 ];
 
